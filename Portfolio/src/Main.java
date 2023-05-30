@@ -2,14 +2,15 @@ import java.util.Arrays;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 
+/**
+ * The Main class represents the entry point of the application.
+ */
 public class Main {
     public static void main(String[] args) {
-        // Create a JFrame for the application window
         JFrame frame = new JFrame("Self Portfolio");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
 
-        // Create a JTabbedPane to hold different panels
         JTabbedPane tabbedPane = new JTabbedPane();
 
         // Create instances of different panels
@@ -32,7 +33,6 @@ public class Main {
         tabbedPane.addTab("Skills", skillPanel);
         tabbedPane.addTab("Projects", projectPanel);
 
-        // Add the tabbedPane to the frame and make it visible
         frame.add(tabbedPane);
         frame.pack();
         frame.setVisible(true);
