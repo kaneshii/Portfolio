@@ -1,49 +1,73 @@
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Image;
 import java.util.List;
 
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
+
+/**
+ * The ProjectPanel class represents a panel that displays project information and images.
+ * It provides methods to add projects with descriptions and associated images.
+ */
 public class ProjectPanel extends JPanel {
     private JPanel contentPanel;
     private JScrollPane scrollPane;
 
+    /**
+     * Constructs a ProjectPanel object.
+     * Sets the layout, size, background color, and border of the panel.
+     * Creates the content panel and scroll pane.
+     * Adds the scroll pane to the panel.
+     */
     public ProjectPanel() {
-        // Set the layout, preferred size, background color, and border of the panel
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(800, 400));
         setBackground(new Color(41, 39, 46));
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        // Create a content panel to hold project panels
         contentPanel = new JPanel();
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
         contentPanel.setOpaque(false);
 
-        // Create a scroll pane to enable scrolling if the content overflows
         scrollPane = new JScrollPane(contentPanel);
         scrollPane.setBorder(null);
         scrollPane.setOpaque(false);
         scrollPane.getViewport().setOpaque(false);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-        // Add the scroll pane to the panel
         add(scrollPane, BorderLayout.CENTER);
     }
 
+    /**
+     * Adds a project with the given description and associated images to the panel.
+     * 
+     * @param projectDescription The description of the project.
+     * @param imagePaths         The list of image paths associated with the project.
+     */
     public void addProject(String projectDescription, List<String> imagePaths) {
-        // Create a project panel to hold project details and images
         JPanel projectPanel = new JPanel();
         projectPanel.setLayout(new BorderLayout());
         projectPanel.setOpaque(false);
         projectPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY, 3));
 
-        // Create an image panel to hold project images
         JPanel imagePanel = new JPanel();
         int rows = (int) Math.ceil((double) imagePaths.size() / 2);
         imagePanel.setLayout(new GridLayout(rows, 1, 0, 30));
         imagePanel.setOpaque(false);
         imagePanel.setBorder(BorderFactory.createEmptyBorder(30, 10, 10, 10));
 
-        // Iterate over the image paths and add them as image labels to the image panel
         for (String imagePath : imagePaths) {
             ImageIcon image = new ImageIcon(imagePath);
             Image scaledImage = image.getImage().getScaledInstance(800, 520, Image.SCALE_SMOOTH);
@@ -54,7 +78,6 @@ public class ProjectPanel extends JPanel {
             imagePanel.add(imageLabel);
         }
 
-        // Create a text area to display the project description
         JTextArea projectTextArea = new JTextArea();
         projectTextArea.setFont(new Font("Helvetica", Font.PLAIN, 24));
         projectTextArea.setForeground(Color.WHITE);
@@ -65,16 +88,13 @@ public class ProjectPanel extends JPanel {
         projectTextArea.setOpaque(false);
         projectTextArea.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        // Add the image panel and project text area to the project panel
         projectPanel.add(imagePanel, BorderLayout.NORTH);
         projectPanel.add(projectTextArea, BorderLayout.CENTER);
 
-        // Add spacing and the project panel to the content panel
         contentPanel.add(Box.createVerticalStrut(15));
         contentPanel.add(projectPanel);
         contentPanel.revalidate();
 
-        // Scroll to the top of the scroll pane
         scrollPane.getVerticalScrollBar().setValue(0);
     }
 }
