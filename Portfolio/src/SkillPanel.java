@@ -18,14 +18,17 @@ public class SkillPanel extends JPanel {
     private JScrollPane scrollPane;
     private JPanel contentPanel;
 
+    /**
+     * Constructs a SkillPanel object.
+     * This panel displays a list of skill paragraphs with associated images.
+     */
     public SkillPanel() {
-        // Set the layout, preferred size, background color, and border of the panel
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(800, 400));
         setBackground(new Color(41, 39, 46));
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        // Create a content panel to hold skill paragraphs
+        // Create a panel to hold the skill paragraphs
         contentPanel = new JPanel();
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
         contentPanel.setOpaque(false);
@@ -40,6 +43,12 @@ public class SkillPanel extends JPanel {
         add(scrollPane, BorderLayout.CENTER);
     }
 
+    /**
+     * Adds a skill paragraph with an associated image to the SkillPanel.
+     *
+     * @param paragraph  The skill paragraph to be displayed.
+     * @param imagePath  The path to the image file associated with the skill.
+     */
     public void addParagraph(String paragraph, String imagePath) {
         // Create a panel to hold the skill paragraph and image
         JPanel paragraphPanel = new JPanel();
