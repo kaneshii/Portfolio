@@ -7,13 +7,23 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+/**
+ * The ProfilePanel class represents a panel that displays profile information.
+ * It contains a name, occupation, and picture.
+ */
 public class ProfilePanel extends JPanel {
     private JLabel nameLabel;
     private JLabel occupationLabel;
     private JLabel pictureLabel;
 
+    /**
+     * Constructs a ProfilePanel object with the given name, occupation, and picture.
+     *
+     * @param name        The name to be displayed.
+     * @param occupation  The occupation to be displayed.
+     * @param picturePath The file path of the picture to be displayed.
+     */
     public ProfilePanel(String name, String occupation, String picturePath) {
-        // Set the layout and background color of the panel
         setLayout(new BorderLayout());
         setBackground(new Color(133, 129, 143));
 
